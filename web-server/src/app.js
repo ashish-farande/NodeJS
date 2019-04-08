@@ -47,8 +47,20 @@ app.get('/about',(req, res)=>{
     })
 })
 
+app.get('/help/*', (req,res)=>{
+    res.render('404',{
+        title: '404',
+        name: 'Ashish Farande',
+        errorMessage: 'No help provided here.'
+    })
+})
+
 app.get('*', (req, res)=>{
-    res.send('<h1>A 404 Page.</h1>')
+    res.render('404', {
+        title: '404',
+        name: 'Ashish Farande',
+        errorMessage: 'Page Not Found'
+    })
 })
 
 app.listen(3000, '127.0.0.1', ()=>{
