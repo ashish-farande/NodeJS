@@ -15,7 +15,7 @@ app.set('views', pathToViews);
 hbs.registerPartials(pathToPartials);
 
 // Static directory
-//app.use(express.static(pathToPublic));
+app.use(express.static(pathToPublic));
 
 app.get('', (req, res)=>{
     res.render('index', {
@@ -25,13 +25,6 @@ app.get('', (req, res)=>{
     })
 })
 
-// app.get('/weather', (req, res)=>{
-//     res.send({
-//         forecast: 'Today\'s weather',
-//         location: 'Banglore'
-//     });
-// })
-
 app.get('/help',(req, res)=>{
     res.render('help',{
         title: 'Help',
@@ -39,6 +32,33 @@ app.get('/help',(req, res)=>{
     })
 })
 
+
+app.get('/products',(req, res)=>{
+    if(!req.query.search)
+    {
+        return res.send({
+            error: "Please provide something to search."
+        })
+    }
+    console.log(req.query.search);
+    res.send({
+        products: []
+    })
+});
+
+app.get('/weather', (req, res) => {
+    if(!req.query.address)
+    {
+        return res.send({
+            error: "Please provide an address"
+        })
+    }
+
+    res.send({
+        forecast: 'It is Chilled',
+        location: 'Banglore'
+    })
+})
 
 app.get('/about',(req, res)=>{
     res.render('about',{

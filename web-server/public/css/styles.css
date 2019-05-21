@@ -1,3 +1,33 @@
+body {
+    color: #333333;
+    font-family: Georgia;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #efefef;
+    text-align: center;
+}
+
 h1 {
-    color: grey ;
+    font-size: 64px;
+    margin-bottom: 16px;
+}
+
+header {
+    margin-top: #888888;
+    margin-bottom: 16px;
+}
+
+header a {
+    color: #888888;
+    margin-right: 16px;
+    text-decoration: none;
 }
