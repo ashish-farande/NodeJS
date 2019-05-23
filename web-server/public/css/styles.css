@@ -5,6 +5,9 @@ body {
     margin: 0 auto;
     padding: 0 16px;
 }
+.main-content{
+    flex-grow: 1;
+}
 
 footer{
     position: absolute;
@@ -30,4 +33,17 @@ header a {
     color: #888888;
     margin-right: 16px;
     text-decoration: none;
+}
+
+input {
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
 }

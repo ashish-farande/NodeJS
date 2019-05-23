@@ -19,7 +19,7 @@ hbs.registerPartials(pathToPartials);
 // Static directory
 app.use(express.static(pathToPublic));
 
-app.get('', (req, res)=>{
+app.get('', (req, res) => {
     res.render('index', {
         title: 'Weather Broadcast',
         name: 'Ashish Farande',
@@ -27,17 +27,16 @@ app.get('', (req, res)=>{
     })
 })
 
-app.get('/help',(req, res)=>{
-    res.render('help',{
+app.get('/help', (req, res) => {
+    res.render('help', {
         title: 'Help',
         helpText: 'Here is some help'
     })
 })
 
 
-app.get('/products',(req, res)=>{
-    if(!req.query.search)
-    {
+app.get('/products', (req, res) => {
+    if (!req.query.search) {
         return res.send({
             error: "Please provide something to search."
         })
@@ -49,47 +48,50 @@ app.get('/products',(req, res)=>{
 });
 
 app.get('/weather', (req, res) => {
-    if(!req.query.address)
-    {
+
+    if (!req.query.address) {
         return res.send({
             error: "Please provide an address"
         })
     }
 
-    geocode(req.query.address, (error, {latitude, longitude, location}={}) => {
+    geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+
         if (error)
-            return res.send( error);
-        
-        forecast(latitude, longitude, (error, tempData)=>{
+        {
+            console.log(error)
+            return res.send({error});
+        }
+        forecast(latitude, longitude, (error, tempData) => {
             if (error)
-                return res.send( error)
+                return res.send(error)
             res.send({
                 forecast: tempData,
                 location: location,
                 address: req.query.address
             })
-    });
-        
+        });
+
     })
-    
+
 })
 
-app.get('/about',(req, res)=>{
-    res.render('about',{
+app.get('/about', (req, res) => {
+    res.render('about', {
         title: 'About',
         name: 'Ashish Farande'
     })
 })
 
-app.get('/help/*', (req,res)=>{
-    res.render('404',{
+app.get('/help/*', (req, res) => {
+    res.render('404', {
         title: '404',
         name: 'Ashish Farande',
         errorMessage: 'No help provided here.'
     })
 })
 
-app.get('*', (req, res)=>{
+app.get('*', (req, res) => {
     res.render('404', {
         title: '404',
         name: 'Ashish Farande',
@@ -97,6 +99,6 @@ app.get('*', (req, res)=>{
     })
 })
 
-app.listen(3000, '127.0.0.1', ()=>{
+app.listen(3000, '127.0.0.1', () => {
     console.log('Server is up and running.');
 });
